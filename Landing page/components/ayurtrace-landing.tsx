@@ -39,6 +39,7 @@ const translations = {
       transparency: "Transparency",
       contact: "Contact",
       dashboard: "Dashboard", // Added for navigation
+      qrcode: "QR Code",
     },
     hero: {
       title: "AyurTrace",
@@ -107,6 +108,7 @@ const translations = {
       transparency: "पारदर्शिता",
       contact: "संपर्क",
       dashboard: "डैशबोर्ड", // Added for navigation
+      qrcode: "क्यूआर",
     },
     hero: {
       title: "आयुर्ट्रेस",
@@ -214,6 +216,9 @@ export function AyurTraceLanding() {
               {/* Added Dashboard link to navigation */}
               <Link href="/dashboard" className="text-green-700 hover:text-green-600 font-medium">
                 {t.nav.dashboard}
+              </Link>
+              <Link href="/qr-page" className="text-green-700 hover:text-green-600 font-medium">
+                {t.nav.qrcode}
               </Link>
             </div>
 
@@ -390,6 +395,7 @@ export function AyurTraceLanding() {
                 <Link href="/dashboard" className="block text-green-100 hover:text-white">
                   {t.nav.dashboard}
                 </Link>
+                
               </div>
             </div>
 
