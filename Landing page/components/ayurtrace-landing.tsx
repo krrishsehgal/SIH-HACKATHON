@@ -21,6 +21,7 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
+import { AyurvedaChatbot } from './ui/chatbot';
 
 // (Keep your slogans and translations objects as they are)
 const slogans = [
@@ -176,6 +177,7 @@ export function AyurTraceLanding() {
   const [language, setLanguage] = useState<"en" | "hi">("en");
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [chatMessage, setChatMessage] = useState("");
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const t = translations[language];
 
@@ -417,54 +419,19 @@ export function AyurTraceLanding() {
 
       {/* Floating Chatbot */}
       <div className="fixed bottom-6 right-6 z-50">
-        {chatbotOpen ? (
-          <Card className="w-80 h-96 bg-white border-green-200 shadow-xl">
-            <div className="bg-green-600 text-white p-4 rounded-t-lg flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <MessageCircle className="h-5 w-5" />
-                <span className="font-semibold">{t.chatbot.title}</span>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setChatbotOpen(false)}
-                className="text-white hover:bg-green-700 p-1"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="p-4 h-64 bg-gray-50 overflow-y-auto">
-              <div className="bg-green-100 p-3 rounded-lg mb-4">
-                <p className="text-sm text-green-800">
-                  Hello! I'm AyurBot. Ask me about herb traceability, certifications, or Ayurvedic practices.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-4 border-t border-green-100">
-              <div className="flex space-x-2">
-                <input
-                  type="text"
-                  value={chatMessage}
-                  onChange={(e) => setChatMessage(e.target.value)}
-                  placeholder={t.chatbot.placeholder}
-                  className="flex-1 px-3 py-2 border border-green-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                  {t.chatbot.send}
-                </Button>
-              </div>
-            </div>
-          </Card>
-        ) : (
+        {!isChatbotOpen && (
           <Button
-            onClick={() => setChatbotOpen(true)}
+            onClick={() => setIsChatbotOpen(true)}
             className="bg-green-600 hover:bg-green-700 text-white rounded-full w-14 h-14 shadow-lg"
           >
             <MessageCircle className="h-6 w-6" />
           </Button>
         )}
+
+        <AyurvedaChatbot 
+          isOpen={isChatbotOpen} 
+          onClose={() => setIsChatbotOpen(false)}
+        />
       </div>
     </div>
   );
